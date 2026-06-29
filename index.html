@@ -10,7 +10,6 @@
             --panel-bg: #1f2833;
             --accent-glow: #66fcf1;
             --text-main: #c5c6c7;
-            --danger: #ff4c4c;
         }
 
         body {
@@ -28,21 +27,21 @@
 
         .container {
             background-color: var(--panel-bg);
-            padding: 40px;
+            padding: 30px;
             border-radius: 10px;
             box-shadow: 0 0 20px rgba(0, 0, 0, 0.8), 0 0 15px var(--accent-glow) inset;
-            width: 100%;
+            width: 90%;
             max-width: 500px;
             text-align: center;
             position: relative;
-            z-index: 10;
         }
 
         h1 {
             color: var(--accent-glow);
             text-transform: uppercase;
+            font-size: 24px;
             letter-spacing: 2px;
-            margin-bottom: 30px;
+            margin-bottom: 20px;
             text-shadow: 0 0 10px var(--accent-glow);
         }
 
@@ -61,7 +60,7 @@
         }
 
         input {
-            width: 40%;
+            width: 45%;
             padding: 10px;
             background-color: #000;
             border: 1px solid var(--accent-glow);
@@ -70,11 +69,6 @@
             font-size: 16px;
             border-radius: 5px;
             outline: none;
-            transition: box-shadow 0.3s ease;
-        }
-
-        input:focus {
-            box-shadow: 0 0 10px var(--accent-glow);
         }
 
         button {
@@ -88,141 +82,83 @@
             text-transform: uppercase;
             cursor: pointer;
             border-radius: 5px;
-            transition: all 0.3s ease;
-            margin-top: 20px;
+            margin-top: 10px;
         }
 
-        button:hover {
+        button:active {
             background-color: var(--accent-glow);
             color: var(--bg-color);
-            box-shadow: 0 0 20px var(--accent-glow);
-        }
-
-        button:disabled {
-            border-color: #555;
-            color: #555;
-            cursor: not-allowed;
-            background: transparent;
-            box-shadow: none;
         }
 
         .forge-animation {
             display: none;
-            height: 150px;
+            height: 100px;
             position: relative;
             margin: 20px 0;
         }
 
         .orb {
-            width: 40px;
-            height: 40px;
+            width: 30px;
+            height: 30px;
             border-radius: 50%;
             position: absolute;
             top: 50%;
             transform: translateY(-50%);
-            filter: blur(5px);
+            filter: blur(3px);
             opacity: 0;
         }
 
-        .orb.left {
-            background-color: #ff4c4c;
-            box-shadow: 0 0 30px #ff4c4c;
-            left: 20%;
-        }
-
-        .orb.right {
-            background-color: #4da6ff;
-            box-shadow: 0 0 30px #4da6ff;
-            right: 20%;
-        }
-
+        .orb.left { background-color: #ff4c4c; box-shadow: 0 0 20px #ff4c4c; left: 10%; }
+        .orb.right { background-color: #4da6ff; box-shadow: 0 0 20px #4da6ff; right: 10%; }
         .fusion-core {
             width: 10px;
             height: 10px;
             background-color: #fff;
             border-radius: 50%;
             position: absolute;
-            top: 50%;
-            left: 50%;
+            top: 50%; left: 50%;
             transform: translate(-50%, -50%);
-            box-shadow: 0 0 50px 20px var(--accent-glow);
+            box-shadow: 0 0 40px 15px var(--accent-glow);
             opacity: 0;
         }
 
-        .animating .orb.left { animation: moveRight 1.5s ease-in forwards; }
-        .animating .orb.right { animation: moveLeft 1.5s ease-in forwards; }
-        .animating .fusion-core { animation: explode 2s 1.5s forwards; }
+        .animating .orb.left { animation: moveRight 1.2s ease-in forwards; }
+        .animating .orb.right { animation: moveLeft 1.2s ease-in forwards; }
+        .animating .fusion-core { animation: explode 1.5s 1.2s forwards; }
 
-        @keyframes moveRight {
-            0% { opacity: 0; left: 10%; }
-            50% { opacity: 1; }
-            100% { left: 45%; opacity: 1; }
-        }
-
-        @keyframes moveLeft {
-            0% { opacity: 0; right: 10%; }
-            50% { opacity: 1; }
-            100% { right: 45%; opacity: 1; }
-        }
-
+        @keyframes moveRight { 0% { opacity: 0; left: 10%; } 100% { left: 45%; opacity: 1; } }
+        @keyframes moveLeft { 0% { opacity: 0; right: 10%; } 100% { right: 45%; opacity: 1; } }
         @keyframes explode {
             0% { opacity: 0; transform: translate(-50%, -50%) scale(1); }
-            20% { opacity: 1; transform: translate(-50%, -50%) scale(5); }
-            50% { opacity: 1; transform: translate(-50%, -50%) scale(10); filter: hue-rotate(90deg); }
+            50% { opacity: 1; transform: translate(-50%, -50%) scale(8); }
             100% { opacity: 0; transform: translate(-50%, -50%) scale(0); }
         }
 
         #result-box {
             display: none;
-            margin-top: 30px;
-            padding: 20px;
+            margin-top: 20px;
+            padding: 15px;
             border-left: 4px solid var(--accent-glow);
             background: rgba(102, 252, 241, 0.1);
             text-align: left;
-            animation: fadeIn 1s ease-in;
         }
 
-        #spell-name {
-            font-size: 24px;
-            color: #fff;
-            margin-bottom: 10px;
-            text-transform: capitalize;
-            text-shadow: 0 0 5px #fff;
-        }
-
-        #spell-desc {
-            font-size: 16px;
-            line-height: 1.5;
-            color: #ddd;
-        }
-
-        #status {
-            margin-top: 12px;
-            font-size: 14px;
-            color: #aaa;
-            min-height: 18px;
-        }
-
-        @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(10px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
+        #spell-name { font-size: 22px; color: #fff; margin-bottom: 10px; text-transform: capitalize; }
+        #spell-desc { font-size: 15px; line-height: 1.4; color: #ddd; }
     </style>
 </head>
 <body>
 
     <div class="container">
         <h1>Sintetizador Arcano</h1>
-
+        
         <div id="input-section">
             <div class="input-group">
-                <input type="text" id="elem1" placeholder="Ex: Fogo" autocomplete="off">
+                <input type="text" id="elem1" placeholder="Ex: Fogo">
                 <span>+</span>
-                <input type="text" id="elem2" placeholder="Ex: Gelo" autocomplete="off">
+                <input type="text" id="elem2" placeholder="Ex: Gelo">
             </div>
-            <input type="password" id="apiKey" placeholder="Cole sua Gemini API Key aqui" style="width:100%; box-sizing:border-box; margin-top:10px;">
             <button id="btn-criar" onclick="criarMagia()">Sintetizar Magia</button>
-            <div id="status"></div>
         </div>
 
         <div class="forge-animation" id="animation-area">
@@ -238,38 +174,43 @@
     </div>
 
     <script>
+        // COLOQUE SUA CHAVE AQUI DENTRO DAS ASPAS!
+        const API_KEY = 'COLOQUE_SUA_CHAVE_AQUI'; 
+
         async function criarMagia() {
             const el1 = document.getElementById('elem1').value.trim();
             const el2 = document.getElementById('elem2').value.trim();
-            const apiKey = document.getElementById('apiKey').value.trim();
             const btn = document.getElementById('btn-criar');
             const animArea = document.getElementById('animation-area');
             const resultBox = document.getElementById('result-box');
-            const status = document.getElementById('status');
 
-            if (!el1 || !el2) return alert("Por favor, preencha os dois elementos!");
-            if (!apiKey) return alert("Cole sua API Key do Gemini.");
+            if (!el1 || !el2) {
+                alert("Preencha os dois elementos!");
+                return;
+            }
+
+            if (API_KEY === 'COLOQUE_SUA_CHAVE_AQUI') {
+                alert("Erro: Você esqueceu de colocar a sua chave da API no código!");
+                return;
+            }
 
             btn.disabled = true;
             btn.innerText = "Sintetizando...";
-            status.innerText = "Invocando o núcleo arcano...";
             resultBox.style.display = 'none';
             animArea.style.display = 'block';
+            
             animArea.classList.remove('animating');
-            void animArea.offsetWidth;
+            void animArea.offsetWidth; 
             animArea.classList.add('animating');
 
             const promptText = `
-Atue como um criador de magias de um RPG épico.
-Eu combinei os elementos: ${el1} e ${el2}.
-Crie UMA magia resultante dessa fusão.
-Retorne APENAS um JSON válido com:
-"nome": nome criativo da magia,
-"descricao": descrição visual, cinemática e detalhada (máximo 3 frases).
-            `.trim();
+                Crie uma magia épica juntando ${el1} e ${el2}.
+                Retorne APENAS um JSON válido.
+                Formato exato: {"nome": "nome da magia", "descricao": "descrição visual da magia em 2 frases"}
+            `;
 
             try {
-                const response = await fetch(`https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash:generateContent?key=${apiKey}`, {
+                const response = await fetch(`https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash:generateContent?key=${API_KEY}`, {
                     method: 'POST',
                     headers: { 'Content-Type': 'application/json' },
                     body: JSON.stringify({
@@ -278,42 +219,35 @@ Retorne APENAS um JSON válido com:
                     })
                 });
 
-                const raw = await response.text();
-                let data;
-                try {
-                    data = JSON.parse(raw);
-                } catch {
-                    throw new Error(`Resposta inválida da API: ${raw}`);
-                }
-
                 if (!response.ok) {
-                    throw new Error(data?.error?.message || `HTTP ${response.status}`);
+                    throw new Error("Erro na conexão com a API. Verifique sua chave.");
                 }
 
-                const aiResponseText = data?.candidates?.[0]?.content?.parts?.[0]?.text;
-                if (!aiResponseText) throw new Error('Resposta vazia do Gemini.');
-
+                const data = await response.json();
+                
+                // Limpeza extra para evitar erros de formatação (Markdown)
+                let aiResponseText = data.candidates[0].content.parts[0].text;
+                aiResponseText = aiResponseText.replace(/```json/g, '').replace(/```/g, '').trim();
+                
                 const magiaGerada = JSON.parse(aiResponseText);
 
                 setTimeout(() => {
                     animArea.style.display = 'none';
                     animArea.classList.remove('animating');
-                    document.getElementById('spell-name').innerText = magiaGerada.nome || 'Magia Desconhecida';
-                    document.getElementById('spell-desc').innerText = magiaGerada.descricao || 'Sem descrição.';
+                    
+                    document.getElementById('spell-name').innerText = magiaGerada.nome;
+                    document.getElementById('spell-desc').innerText = magiaGerada.descricao;
                     resultBox.style.display = 'block';
 
                     btn.disabled = false;
                     btn.innerText = "Nova Síntese";
-                    status.innerText = "Síntese concluída.";
-                }, 3500);
+                }, 2700);
 
             } catch (error) {
-                console.error("Erro ao gerar magia:", error);
-                alert(error.message || "Falha ao comunicar com a Forja Arcana.");
+                alert("DETALHE DO ERRO: " + error.message);
                 btn.disabled = false;
-                btn.innerText = "Sintetizar Magia";
+                btn.innerText = "Tentar Novamente";
                 animArea.style.display = 'none';
-                status.innerText = error.message || "Erro na síntese.";
             }
         }
     </script>
